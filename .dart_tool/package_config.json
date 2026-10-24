@@ -44,6 +44,24 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "firebase_core",
+      "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/firebase_core-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-8.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/firebase_core_web-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///home/michi/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -110,6 +128,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///home/michi/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -162,6 +186,12 @@
       "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/vm_service-15.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "web",
+      "rootUri": "file:///home/michi/.pub-cache/hosted/pub.dev/web-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.13"
     },
     {
       "name": "board_gamer_app",
