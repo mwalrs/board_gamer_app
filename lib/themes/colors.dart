@@ -9,7 +9,7 @@ class BoardGameColors {
   static const Color accent800 = Color(0xFF7C1405);
 
   static const MaterialColor applicationColor = MaterialColor(
-    _applicationColorValue,
+    applicationColorValue,
     <int, Color>{
       // accent for hovering
       100: accent100,
@@ -29,7 +29,7 @@ class BoardGameColors {
 
 
   // default app color
-  static const int _applicationColorValue = 0xF3F2F2;
+  static const int applicationColorValue = 0xFFF3F2F2;
   // form color, affects cards, menus and data forms
   static const Color formColor = Color(0xFFEAE9E9);
   // text color default

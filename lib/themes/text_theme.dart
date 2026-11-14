@@ -35,11 +35,9 @@ class BoardGameTextTheme {
   static TextTheme customTestTheme() {
     const font = 'Archivo';
     return const TextTheme(
-      displayMedium: TextStyle(fontFamily: font, fontSize: 34, fontWeight: FontWeight.w800, height: 1.08, letterSpacing: -0.68, color: BoardGameColors.defaultText),
-      headlineMedium: TextStyle(fontFamily: font, fontSize: 30, fontWeight: FontWeight.w800, height: 1.10, letterSpacing: -0.60, color: BoardGameColors.defaultText),
-      titleMedium: TextStyle(fontFamily: font, fontSize: 17, fontWeight: FontWeight.w800, height: 1.2, color: BoardGameColors.defaultText),
-      labelMedium: TextStyle(fontFamily: font, fontSize: 11, fontWeight: FontWeight.w400, letterSpacing: 0.66, color: BoardGameColors.defaultText),
-      bodyMedium: TextStyle(fontFamily: font, fontSize: 16, fontWeight: FontWeight.w400, color: BoardGameColors.defaultText)
+      labelMedium: TextStyle(fontFamily: font, fontSize: 15, fontWeight: FontWeight.w800, height: 1.2, color: BoardGameColors.defaultText),
+      bodyMedium: TextStyle(fontFamily: font, fontSize: 15, fontWeight: FontWeight.w400, height: 1.5, color: BoardGameColors.defaultText),
+      titleLarge: TextStyle(fontFamily: font, fontSize: 34, fontWeight: FontWeight.w900, height: 1.08, letterSpacing: -0.68, color: BoardGameColors.defaultText),
     );
   }
 }
