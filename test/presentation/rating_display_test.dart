@@ -1,6 +1,6 @@
+import 'package:board_gamer_app/presentation/widgets/rating_display.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:board_gamer_app/ui/core/rating_display.dart';
 
 void main() {
   group('RatingDisplay', () {
