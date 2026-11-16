@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:board_gamer_app/domain/usecases/rating/rating_usecases.dart';
+import 'package:board_gamer_app/domain/usecases/rating_usecases.dart';
 
 void main() {
   late RatingUsecases usecases;

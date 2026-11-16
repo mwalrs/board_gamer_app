@@ -1,7 +1,7 @@
+import 'package:board_gamer_app/presentation/widgets/rating_display.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:board_gamer_app/ui/core/average_ratings_display.dart';
-import 'package:board_gamer_app/ui/core/rating_display.dart';
+import 'package:board_gamer_app/presentation/widgets/average_ratings_display.dart';
 
 void main() {
   late List<RatingDisplay> ratings;
