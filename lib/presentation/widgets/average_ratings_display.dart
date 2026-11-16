@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:board_gamer_app/ui/core/rating_display.dart';
+import './rating_display.dart';
 
 class AverageRatingsDisplay extends StatelessWidget {
   final double averageHost;
