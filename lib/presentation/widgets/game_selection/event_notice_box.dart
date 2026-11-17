@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TerminHinweisBox extends StatelessWidget {
-  const TerminHinweisBox({super.key});
+class EventNoticeBox extends StatelessWidget {
+  const EventNoticeBox({super.key});
 
   Widget _zeile(String titel, String wert) {
     return Text.rich(

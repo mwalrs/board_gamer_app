@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../widgets/spielauswahl/termin_hinweis_box.dart';
+import '../widgets/game_selection/event_notice_box.dart';
 
-class SpielvorschlagScreen extends StatefulWidget {
-  const SpielvorschlagScreen({super.key});
+class GameProposalScreen extends StatefulWidget {
+  const GameProposalScreen({super.key});
 
   @override
-  State<SpielvorschlagScreen> createState() => _SpielvorschlagScreenState();
+  State<GameProposalScreen> createState() => _GameProposalScreenState();
 }
 
-class _SpielvorschlagScreenState extends State<SpielvorschlagScreen> {
+class _GameProposalScreenState extends State<GameProposalScreen> {
   final _controller = TextEditingController();
   String? _fehler;
 
@@ -55,7 +55,7 @@ class _SpielvorschlagScreenState extends State<SpielvorschlagScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TerminHinweisBox(),
+                  const EventNoticeBox(),
                   const SizedBox(height: 18),
                   const Text('Welches Spiel möchtest du vorschlagen?',
                       style: TextStyle(
