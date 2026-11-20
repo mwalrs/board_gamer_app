@@ -8,7 +8,7 @@ class BoardGameElevatedButtonTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: BoardGameColors.accent500,
         foregroundColor: BoardGameColors.buttonLabel,
-        textStyle: BoardGameTextTheme.customTestTheme().labelMedium,
+        textStyle: BoardGameTextTheme.customTextTheme().labelMedium,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero
         ),
