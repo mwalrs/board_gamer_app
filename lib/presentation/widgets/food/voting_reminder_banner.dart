@@ -12,8 +12,9 @@ class VotingReminderBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
 
     return Card(
       color: colorScheme.secondaryContainer,

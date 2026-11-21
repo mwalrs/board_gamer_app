@@ -88,7 +88,6 @@ class _FoodVotingScreenState extends State<FoodVotingScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final eButtonTheme = theme.elevatedButtonTheme;
     final isVotingOpen = _deadlineUseCase.isVotingOpen(
       eventDateTime: widget.eventDateTime,
     );
