@@ -66,15 +66,15 @@ void main() {
       expect(find.text('Italienisch'), findsOneWidget);
 
       // Save button is initially deactivated
-      final saveButtonFinder = find.widgetWithText(FilledButton, 'Auswahl speichern');
-      expect(tester.widget<FilledButton>(saveButtonFinder).onPressed, isNull);
+      final saveButtonFinder = find.widgetWithText(ElevatedButton, 'Auswahl speichern');
+      expect(tester.widget<ElevatedButton>(saveButtonFinder).onPressed, isNull);
 
       // ACT: Choose a cuisine
       await tester.tap(find.text('Italienisch'));
       await tester.pump();
 
       // ASSERT: Save button is now active
-      expect(tester.widget<FilledButton>(saveButtonFinder).onPressed, isNotNull);
+      expect(tester.widget<ElevatedButton>(saveButtonFinder).onPressed, isNotNull);
 
       // ACT: Save selection
       await tester.tap(saveButtonFinder);
@@ -114,7 +114,7 @@ void main() {
     await tester.tap(find.text('Burger & Pommes'));
     await tester.pump();
 
-    final saveButtonFinder = find.widgetWithText(FilledButton, 'Auswahl speichern');
+    final saveButtonFinder = find.widgetWithText(ElevatedButton, 'Auswahl speichern');
     await tester.tap(saveButtonFinder);
     await tester.pumpAndSettle();
 
