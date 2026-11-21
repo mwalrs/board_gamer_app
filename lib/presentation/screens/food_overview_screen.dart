@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../domain/entities/cuisine.dart';
+import '../../domain/entities/food_voting_result.dart';
+import '../../domain/entities/restaurant.dart';
 import '../../domain/usecases/food_submit_vote.dart';
 import '../widgets/food/food_process_status_card.dart';
 import 'food_voting_screen.dart';
+import 'host_restaurant_selection_screen.dart';
 
 class FoodOverviewScreen extends StatelessWidget {
   final String eventId;
@@ -11,6 +15,8 @@ class FoodOverviewScreen extends StatelessWidget {
   final String foodStatus;
   final String? selectedRestaurantName;
   final bool isVotingOpen;
+  final FoodVotingResult? votingResult;
+  final Restaurant? initialRestaurant;
   final bool isCurrentUserHost;
   final SubmitFoodVoteUseCase? submitVoteUseCase;
 
@@ -23,6 +29,8 @@ class FoodOverviewScreen extends StatelessWidget {
     this.foodStatus = 'pending',
     this.selectedRestaurantName,
     this.isVotingOpen = true,
+    this.votingResult,
+    this.initialRestaurant,
     this.isCurrentUserHost = false,
     this.submitVoteUseCase,
   });
@@ -36,6 +44,27 @@ class FoodOverviewScreen extends StatelessWidget {
           eventDateTime: eventDateTime,
           hostName: hostName,
           submitVoteUseCase: submitVoteUseCase,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToHostRestaurantSelection(BuildContext context) {
+    final result = votingResult ??
+        FoodVotingResult(
+          totalVotes: 0,
+          voteCounts: {for (final c in Cuisine.values) c: 0},
+          percentages: {for (final c in Cuisine.values) c: 0.0},
+          winningCuisines: const [],
+        );
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => HostRestaurantSelectionScreen(
+          eventId: eventId,
+          votingResult: result,
+          initialRestaurant: initialRestaurant,
+          foodStatus: foodStatus,
         ),
       ),
     );
@@ -109,8 +138,8 @@ class FoodOverviewScreen extends StatelessWidget {
                   style: textTheme.bodyMedium,
                 ),
                 trailing: const Icon(Icons.chevron_right),
-                enabled: false,
-                onTap: null,
+                enabled: true,  // later with logic
+                onTap: () => _navigateToHostRestaurantSelection(context),
               ),
             ),
             const SizedBox(height: 8),
