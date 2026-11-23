@@ -1,10 +1,10 @@
-class Rating {
+class RatingDisplay {
   final String id;
   final double hostRating;
   final double foodRating;
   final double eveningRating;
 
-  const Rating({
+  const RatingDisplay({
     required this.id,
     required this.hostRating,
     required this.foodRating,

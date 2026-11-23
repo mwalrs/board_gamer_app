@@ -1,7 +1,7 @@
-import '../../data/models/rating.dart';
+import 'package:board_gamer_app/domain/entities/rating_display.dart';
 
-class RatingUsecases {
-  const RatingUsecases();
+class RatingUseCases {
+  const RatingUseCases();
 
   /// Calculates the average rating from a list of ratings.
   double calculateAverageRating({
@@ -16,19 +16,19 @@ class RatingUsecases {
     return (average * 2).round() / 2;
   }
 
-  double calculateHostAverage(List<Rating> ratings) {
+  double calculateHostAverage(List<RatingDisplay> ratings) {
     return calculateAverageRating(
       ratings: ratings.map((r) => r.hostRating).toList(),
     );
   }
 
-  double calculateFoodAverage(List<Rating> ratings) {
+  double calculateFoodAverage(List<RatingDisplay> ratings) {
     return calculateAverageRating(
       ratings: ratings.map((r) => r.foodRating).toList(),
     );
   }
 
-  double calculateEveningAverage(List<Rating> ratings) {
+  double calculateEveningAverage(List<RatingDisplay> ratings) {
     return calculateAverageRating(
       ratings: ratings.map((r) => r.eveningRating).toList(),
     );

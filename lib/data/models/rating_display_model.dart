@@ -1,18 +1,18 @@
-import '../../data/models/rating.dart';
+import 'package:board_gamer_app/domain/entities/rating_display.dart';
 
-class RatingModel extends Rating {
-  const RatingModel({
+class RatingDisplayModel extends RatingDisplay {
+  const RatingDisplayModel({
     required super.id,
     required super.hostRating,
     required super.foodRating,
     required super.eveningRating,
   });
 
-  factory RatingModel.fromFirestore(
+  factory RatingDisplayModel.fromFirestore(
       Map<String, dynamic> data,
       String id,
       ) {
-    return RatingModel(
+    return RatingDisplayModel(
       id: id,
       hostRating: (data['hostRating'] as num?)?.toDouble() ?? 0.0,
       foodRating: (data['foodRating'] as num?)?.toDouble() ?? 0.0,

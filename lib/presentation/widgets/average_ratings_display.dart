@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './rating_display.dart';
+import 'rating/rating_display_widget.dart';
 
 class AverageRatingsDisplay extends StatelessWidget {
   final double averageHost;
@@ -39,7 +39,7 @@ class AverageRatingsDisplay extends StatelessWidget {
                 const Text('Gastgeber'),
               ]
             ),
-            RatingDisplay(
+            RatingDisplayWidget(
               averageRating: averageHost,
               reviewCount: hostReviewCount,
             ),
@@ -59,7 +59,7 @@ class AverageRatingsDisplay extends StatelessWidget {
             ),
             Row(
               children: [
-                RatingDisplay(
+                RatingDisplayWidget(
                   averageRating: averageFood,
                   reviewCount: foodReviewCount,
                 ),
@@ -81,7 +81,7 @@ class AverageRatingsDisplay extends StatelessWidget {
             ),
             Row(
               children: [
-                RatingDisplay(
+                RatingDisplayWidget(
                   averageRating: averageEvening,
                   reviewCount: eveningReviewCount,
                 ),

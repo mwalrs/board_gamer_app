@@ -2,10 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:board_gamer_app/domain/usecases/rating_usecases.dart';
 
 void main() {
-  late RatingUsecases usecases;
+  late RatingUseCases usecases;
 
   setUp(() {
-    usecases = const RatingUsecases();
+    usecases = const RatingUseCases();
   });
 
   group('calculateAverageRating', () {
