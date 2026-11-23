@@ -1,38 +1,61 @@
 import 'package:flutter/material.dart';
+import '../../domain/usecases/food_submit_vote.dart';
 import '../widgets/food/food_process_status_card.dart';
 import 'food_voting_screen.dart';
 
 class FoodOverviewScreen extends StatelessWidget {
   final String eventId;
+  final String currentUserId;
+  final DateTime eventDateTime;
   final String hostName;
   final String foodStatus;
   final String? selectedRestaurantName;
   final bool isVotingOpen;
   final bool isCurrentUserHost;
+  final SubmitFoodVoteUseCase? submitVoteUseCase;
 
   const FoodOverviewScreen({
     super.key,
     required this.eventId,
+    required this.currentUserId,
+    required this.eventDateTime,
     required this.hostName,
     this.foodStatus = 'pending',
     this.selectedRestaurantName,
     this.isVotingOpen = true,
     this.isCurrentUserHost = false,
+    this.submitVoteUseCase,
   });
 
   void _navigateToFoodVoting(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => FoodVotingScreen(eventId: eventId),
+        builder: (_) => FoodVotingScreen(
+          eventId: eventId,
+          currentUserId: currentUserId,
+          eventDateTime: eventDateTime,
+          hostName: hostName,
+          submitVoteUseCase: submitVoteUseCase,
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Essensbestellung'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.maybePop(context),
+        ),
+        title: Text(
+          'Essensbestellung',
+          style: textTheme.labelMedium,
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
@@ -48,7 +71,7 @@ class FoodOverviewScreen extends StatelessWidget {
 
           Text(
             'Aktionen',
-            style: Theme.of(context).textTheme.titleMedium,
+            style: textTheme.labelMedium,
           ),
           const SizedBox(height: 12),
 
@@ -56,11 +79,15 @@ class FoodOverviewScreen extends StatelessWidget {
           Card(
             child: ListTile(
               leading: const Icon(Icons.restaurant),
-              title: const Text('Essensrichtung wählen'),
+              title: Text(
+                'Essensrichtung wählen',
+                style: textTheme.labelMedium,
+              ),
               subtitle: Text(
                 isVotingOpen
                     ? 'Favorisierte Küche für den Spieleabend abstimmen'
                     : 'Abstimmungszeitraum beendet',
+                style: textTheme.bodyMedium,
               ),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => _navigateToFoodVoting(context),
@@ -73,8 +100,14 @@ class FoodOverviewScreen extends StatelessWidget {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.storefront),
-                title: const Text('Restaurant festlegen (Host)'),
-                subtitle: const Text('Voting-Ergebnis einsehen & Lieferdienst eintragen'),
+                title: Text(
+                  'Restaurant festlegen (Host)',
+                  style: textTheme.labelMedium,
+                ),
+                subtitle: Text(
+                  'Voting-Ergebnis einsehen & Lieferdienst eintragen',
+                  style: textTheme.bodyMedium,
+                ),
                 trailing: const Icon(Icons.chevron_right),
                 enabled: false,
                 onTap: null,
@@ -87,8 +120,14 @@ class FoodOverviewScreen extends StatelessWidget {
           Card(
             child: ListTile(
               leading: const Icon(Icons.shopping_bag_outlined),
-              title: const Text('Eigene Bestellung aufgeben'),
-              subtitle: const Text('Gerichte auswählen (bis zu 5 Artikel)'),
+              title: Text(
+                'Eigene Bestellung aufgeben',
+                style: textTheme.labelMedium,
+              ),
+              subtitle: Text(
+                'Gerichte auswählen (bis zu 5 Artikel)',
+                style: textTheme.bodyMedium,
+              ),
               trailing: const Icon(Icons.chevron_right),
               enabled: false,
               onTap: null,
@@ -101,8 +140,14 @@ class FoodOverviewScreen extends StatelessWidget {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.receipt_long),
-                title: const Text('Sammelbestellung & Abschluss (Host)'),
-                subtitle: const Text('Alle Bestellungen einsehen & beim Lieferdienst bestellen'),
+                title: Text(
+                  'Sammelbestellung & Abschluss (Host)',
+                  style: textTheme.labelMedium,
+                ),
+                subtitle: Text(
+                  'Alle Bestellungen einsehen & beim Lieferdienst bestellen',
+                  style: textTheme.bodyMedium,
+                ),
                 trailing: const Icon(Icons.chevron_right),
                 enabled: false,
                 onTap: null,
