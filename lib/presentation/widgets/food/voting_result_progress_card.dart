@@ -16,8 +16,10 @@ class VotingResultProgressCard extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
-    // Sort categories in descending order by number of votes so that the winners appear at the top
+    // Filter categories with > 0 votes and sort in descending order so winners appear at top
     final sortedCuisines = List<Cuisine>.from(Cuisine.values)
+      .where((cuisine) => (votingResult.voteCounts[cuisine] ?? 0) > 0)
+      .toList()
       ..sort((a, b) {
         final countA = votingResult.voteCounts[a] ?? 0;
         final countB = votingResult.voteCounts[b] ?? 0;
