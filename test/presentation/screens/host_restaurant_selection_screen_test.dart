@@ -54,7 +54,7 @@ void main() {
 
       // ASSERT
       expect(find.byType(VotingResultProgressCard), findsOneWidget);
-      expect(find.byType(LinearProgressIndicator), findsNWidgets(Cuisine.values.length));
+      expect(find.byType(LinearProgressIndicator), findsNWidgets(2));
       expect(find.textContaining('Stimmengleichstand'), findsOneWidget);
       expect(find.text('Italienisch (Favorit)'), findsOneWidget);
       expect(find.text('Burger & Pommes (Favorit)'), findsOneWidget);

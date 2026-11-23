@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/cuisine.dart';
+import '../../domain/entities/food_order.dart';
 import '../../domain/entities/food_voting_result.dart';
 import '../../domain/entities/restaurant.dart';
 import '../../domain/usecases/food_submit_vote.dart';
 import '../widgets/food/food_process_status_card.dart';
+import 'food_order_screen.dart';
 import 'food_voting_screen.dart';
 import 'host_restaurant_selection_screen.dart';
 
@@ -12,11 +14,13 @@ class FoodOverviewScreen extends StatelessWidget {
   final String currentUserId;
   final DateTime eventDateTime;
   final String hostName;
+  final String currentUserName;
   final String foodStatus;
   final String? selectedRestaurantName;
   final bool isVotingOpen;
   final FoodVotingResult? votingResult;
   final Restaurant? initialRestaurant;
+  final FoodOrder? initialOrder;
   final bool isCurrentUserHost;
   final SubmitFoodVoteUseCase? submitVoteUseCase;
 
@@ -24,6 +28,7 @@ class FoodOverviewScreen extends StatelessWidget {
     super.key,
     required this.eventId,
     required this.currentUserId,
+    this.currentUserName = "Spieler",
     required this.eventDateTime,
     required this.hostName,
     this.foodStatus = 'pending',
@@ -31,6 +36,7 @@ class FoodOverviewScreen extends StatelessWidget {
     this.isVotingOpen = true,
     this.votingResult,
     this.initialRestaurant,
+    this.initialOrder,
     this.isCurrentUserHost = false,
     this.submitVoteUseCase,
   });
@@ -65,6 +71,22 @@ class FoodOverviewScreen extends StatelessWidget {
           votingResult: result,
           initialRestaurant: initialRestaurant,
           foodStatus: foodStatus,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToFoodOrder(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => FoodOrderScreen(
+          eventId: eventId,
+          currentUserId: currentUserId,
+          currentUserName: currentUserName,
+          hostName: hostName,
+          restaurant: initialRestaurant,
+          foodStatus: foodStatus,
+          initialOrder: initialOrder,
         ),
       ),
     );
@@ -158,8 +180,8 @@ class FoodOverviewScreen extends StatelessWidget {
                 style: textTheme.bodyMedium,
               ),
               trailing: const Icon(Icons.chevron_right),
-              enabled: false,
-              onTap: null,
+              enabled: true,
+              onTap: () => _navigateToFoodOrder(context),
             ),
           ),
 
