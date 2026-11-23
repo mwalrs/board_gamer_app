@@ -1,5 +1,5 @@
-import 'package:board_gamer_app/widgets/start_screen.dart';
-import 'package:board_gamer_app/themes/app_theme.dart';
+import 'package:board_gamer_app/presentation/widgets/start_screen/start_screen.dart';
+import 'package:board_gamer_app/presentation/themes/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

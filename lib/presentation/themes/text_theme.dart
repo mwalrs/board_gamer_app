@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:board_gamer_app/themes/colors.dart';
+import 'package:board_gamer_app/presentation/themes/colors.dart';
 
 /*class BoardGameTextTheme {
   static const _fontStyle = 'Archivo';

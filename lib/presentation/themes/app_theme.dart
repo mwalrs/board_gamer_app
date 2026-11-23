@@ -1,6 +1,6 @@
-import 'package:board_gamer_app/themes/elevated_button_theme.dart';
-import 'package:board_gamer_app/themes/text_theme.dart';
-import 'package:board_gamer_app/themes/colors.dart';
+import 'package:board_gamer_app/presentation/themes/elevated_button_theme.dart';
+import 'package:board_gamer_app/presentation/themes/text_theme.dart';
+import 'package:board_gamer_app/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
