@@ -1,10 +1,10 @@
-import 'package:board_gamer_app/presentation/widgets/rating_display.dart';
+import 'package:board_gamer_app/presentation/widgets/rating/rating_display_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:board_gamer_app/presentation/widgets/average_ratings_display.dart';
 
 void main() {
-  late List<RatingDisplay> ratings;
+  late List<RatingDisplayWidget> ratings;
 
   Future<void> setupWidget(WidgetTester tester) async {
     await tester.pumpWidget(
@@ -22,8 +22,8 @@ void main() {
       ),
     );
 
-    ratings = tester.widgetList<RatingDisplay>(
-      find.byType(RatingDisplay),
+    ratings = tester.widgetList<RatingDisplayWidget>(
+      find.byType(RatingDisplayWidget),
     ).toList();
   }
 

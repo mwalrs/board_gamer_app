@@ -38,6 +38,7 @@ class BoardGameColors {
   static const Color buttonLabel = Color(0xFFFFFFFF);
   // unrated reviews star color
   static const Color unratedStars = Color(0xFFD7D3D3);
+  static const Color ratedStars = Colors.amber;
   static const Color muted = Color(0xA3201E1D);
   static const Color divider = Color(0x66201E1D);
 }

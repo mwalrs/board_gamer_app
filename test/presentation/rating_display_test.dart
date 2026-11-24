@@ -1,4 +1,4 @@
-import 'package:board_gamer_app/presentation/widgets/rating_display.dart';
+import 'package:board_gamer_app/presentation/widgets/rating/rating_display_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ void main() {
     testWidgets('displays review count', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: RatingDisplay(
+          home: RatingDisplayWidget(
             averageRating: 4.5,
             reviewCount: 120,
           ),
@@ -20,7 +20,7 @@ void main() {
     testWidgets('displays ? when there are no reviews', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: RatingDisplay(
+          home: RatingDisplayWidget(
             averageRating: 0,
             reviewCount: 0,
           ),
