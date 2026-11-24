@@ -24,18 +24,18 @@ class _GameTieScreenState extends State<GameTieScreen> {
   bool _isDecided = false;
 
   void _onConfirmPressed() {
-    if (_selectedGameId == null) return; // Abbruch, wenn nichts gewählt
+    if (_selectedGameId == null) return; // Abbruch, wenn nichts gewaehlt
 
     final selectedGame =
     widget.tiedGames.firstWhere((game) => game.id == _selectedGameId);
 
-    setState(() => _isDecided = true); // Status ändern
+    setState(() => _isDecided = true); // Status aendern
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Spiel „${selectedGame.name}“ festgelegt.')),
     );
 
-    Navigator.of(context).maybePop(); // Screen zurück
+    Navigator.of(context).maybePop(); // Screen zurueck
   }
 
   // Screen
@@ -80,18 +80,18 @@ class _GameTieScreenState extends State<GameTieScreen> {
             ),
           ),
 
-          // fixed Bestätigungsbutton
+          // fixed Bestaetigungsbutton
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SizedBox(
                 width: double.infinity,
                 child: FilledButton(
-                  // noch nicht entschieden && Spiel ist gewählt
+                  // noch nicht entschieden && Spiel ist gewaehlt
                   onPressed: !_isDecided && _selectedGameId != null
                       ? _onConfirmPressed
                       : null,
-                  child: const Text('Spie festlegen'),
+                  child: const Text('Spiel festlegen'),
                 ),
               ),
             ),
