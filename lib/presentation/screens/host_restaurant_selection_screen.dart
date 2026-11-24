@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../data/datasources/food_remote_data_source.dart';
+import '../../data/repositories/food_repository_impl.dart';
 import '../../domain/entities/food_voting_result.dart';
 import '../../domain/entities/restaurant.dart';
+import '../../domain/usecases/food_save_restaurant.dart';
 import '../../themes/colors.dart';
 import '../widgets/food/voting_result_progress_card.dart';
 
@@ -9,6 +12,7 @@ class HostRestaurantSelectionScreen extends StatefulWidget {
   final FoodVotingResult votingResult;
   final Restaurant? initialRestaurant;
   final String foodStatus;
+  final SaveSelectedRestaurantUseCase? saveRestaurantUseCase;
   final Future<void> Function(String name, String menuUrl)? onSaveRestaurant;
 
   const HostRestaurantSelectionScreen({
@@ -17,6 +21,7 @@ class HostRestaurantSelectionScreen extends StatefulWidget {
     required this.votingResult,
     this.initialRestaurant,
     this.foodStatus = 'pending',
+    this.saveRestaurantUseCase,
     this.onSaveRestaurant,
   });
 
@@ -30,15 +35,23 @@ class _HostRestaurantSelectionScreenState
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nameController;
   late final TextEditingController _menuUrlController;
+  late String _currentFoodStatus;
 
   bool _isSaving = false;
   late bool _hasExistingRestaurant;
 
-  bool get _isEditingLocked => widget.foodStatus == 'completed';
+  SaveSelectedRestaurantUseCase get _saveUseCase =>
+      widget.saveRestaurantUseCase ??
+      SaveSelectedRestaurantUseCase(
+        FoodRepositoryImpl(FoodRemoteDataSource()),
+      );
+
+  bool get _isEditingLocked => _currentFoodStatus == 'completed';
 
   @override
   void initState() {
     super.initState();
+    _currentFoodStatus = widget.foodStatus;
     final existing = widget.initialRestaurant;
     _hasExistingRestaurant =
         existing != null && existing.name.trim().isNotEmpty;
@@ -70,7 +83,8 @@ class _HostRestaurantSelectionScreenState
     if (uri == null ||
         !uri.hasScheme ||
         (uri.scheme != 'http' && uri.scheme != 'https') ||
-        uri.host.isEmpty) {
+        uri.host.isEmpty ||
+        !uri.host.contains('.')) {
       return 'Bitte gib eine gültige URL (mit http:// oder https://) ein.';
     }
     return null;
@@ -87,12 +101,20 @@ class _HostRestaurantSelectionScreenState
     try {
       if (widget.onSaveRestaurant != null) {
         await widget.onSaveRestaurant!(name, menuUrl);
+      } else {
+        await _saveUseCase.execute(
+          eventId: widget.eventId,
+          name: name,
+          menuUrl: menuUrl,
+          currentFoodStatus: _currentFoodStatus,
+        );
       }
 
       if (!mounted) return;
       final wasEdit = _hasExistingRestaurant;
       setState(() {
         _hasExistingRestaurant = true;
+        _currentFoodStatus = 'in_progress';
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -103,6 +125,16 @@ class _HostRestaurantSelectionScreenState
                 : 'Restaurant „$name“ wurde gespeichert.',
           ),
         ),
+      );
+    } on InvalidRestaurantDataException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message)),
+      );
+    } on OrderAlreadyCompletedException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message)),
       );
     } catch (_) {
       if (!mounted) return;
@@ -242,15 +274,15 @@ class _HostRestaurantSelectionScreenState
                       : _onSavePressed,
                   child: _isSaving
                       ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
                       : Text(
-                    _hasExistingRestaurant
-                        ? 'Änderungen speichern'
-                        : 'Restaurant speichern',
-                  ),
+                          _hasExistingRestaurant
+                              ? 'Änderungen speichern'
+                              : 'Restaurant speichern',
+                        ),
                 ),
               ),
             ),

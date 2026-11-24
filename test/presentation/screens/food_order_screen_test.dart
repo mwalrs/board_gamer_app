@@ -17,6 +17,11 @@ void main() {
   testWidgets(
     'supports 0 to max 5 items dynamically and disables add button at 5 items',
         (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(800, 3000);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
       // ARRANGE: Starts with 0 artikels
       await tester.pumpWidget(
         MaterialApp(
@@ -39,7 +44,6 @@ void main() {
       // ACT: add 5 artikels
       for (int i = 0; i < 5; i++) {
         final addBtn = find.byIcon(Icons.add);
-        await tester.ensureVisible(addBtn);
         await tester.tap(addBtn);
         await tester.pump();
       }
@@ -48,12 +52,12 @@ void main() {
       expect(find.byType(OrderItemFormCard), findsNWidgets(5));
       expect(find.text('Weiteren Artikel hinzufügen (5/5)'), findsOneWidget);
 
-      // ACT: delete on article
-      await tester.ensureVisible(find.byIcon(Icons.delete_outline).first);
-      await tester.tap(find.byIcon(Icons.delete_outline).first);
+      // ACT: delete one article
+      final deleteBtn = find.byIcon(Icons.delete_outline).first;
+      await tester.tap(deleteBtn);
       await tester.pump();
 
-      // ASSERT: still 4 items avaible
+      // ASSERT: still 4 items available
       expect(find.byType(OrderItemFormCard), findsNWidgets(4));
     },
   );
@@ -61,6 +65,11 @@ void main() {
   testWidgets(
     'calculates live total price dynamically and saves valid FoodOrder',
         (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(800, 3000);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
       FoodOrder? savedOrder;
 
       // ARRANGE
@@ -104,7 +113,6 @@ void main() {
 
       // ACT 2: Add second article and fill price input
       final addSecondBtn = find.text('Weiteren Artikel hinzufügen (1/5)');
-      await tester.ensureVisible(addSecondBtn);
       await tester.tap(addSecondBtn);
       await tester.pump();
 
@@ -122,7 +130,8 @@ void main() {
       expect(find.text('13,50 €'), findsOneWidget);
 
       // ACT 3: Save order
-      await tester.tap(find.widgetWithText(ElevatedButton, 'Bestellung speichern'));
+      final saveBtn = find.widgetWithText(ElevatedButton, 'Bestellung speichern');
+      await tester.tap(saveBtn);
       await tester.pumpAndSettle();
 
       // ASSERT 3: FoodOrder object was submitted correctly

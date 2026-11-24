@@ -4,6 +4,7 @@ import '../../domain/entities/food_order.dart';
 import '../../domain/entities/food_voting_result.dart';
 import '../../domain/entities/restaurant.dart';
 import '../../domain/usecases/food_submit_vote.dart';
+import '../../domain/usecases/food_save_restaurant.dart';
 import '../widgets/food/food_process_status_card.dart';
 import 'food_order_screen.dart';
 import 'food_voting_screen.dart';
@@ -23,6 +24,7 @@ class FoodOverviewScreen extends StatelessWidget {
   final FoodOrder? initialOrder;
   final bool isCurrentUserHost;
   final SubmitFoodVoteUseCase? submitVoteUseCase;
+  final SaveSelectedRestaurantUseCase? saveRestaurantUseCase;
 
   const FoodOverviewScreen({
     super.key,
@@ -39,6 +41,7 @@ class FoodOverviewScreen extends StatelessWidget {
     this.initialOrder,
     this.isCurrentUserHost = false,
     this.submitVoteUseCase,
+    this.saveRestaurantUseCase,
   });
 
   void _navigateToFoodVoting(BuildContext context) {
@@ -71,6 +74,7 @@ class FoodOverviewScreen extends StatelessWidget {
           votingResult: result,
           initialRestaurant: initialRestaurant,
           foodStatus: foodStatus,
+          saveRestaurantUseCase: saveRestaurantUseCase,
         ),
       ),
     );
