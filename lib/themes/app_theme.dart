@@ -10,7 +10,7 @@ class AppTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: BoardGameColors.applicationColor,
       elevatedButtonTheme: BoardGameElevatedButtonTheme.elevatedButtonTheme(),
-      textTheme: BoardGameTextTheme.customTestTheme()
+      textTheme: BoardGameTextTheme.customTextTheme()
     );
   }
 }

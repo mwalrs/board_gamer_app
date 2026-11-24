@@ -32,7 +32,7 @@ import 'package:board_gamer_app/themes/colors.dart';
 }*/
 
 class BoardGameTextTheme {
-  static TextTheme customTestTheme() {
+  static TextTheme customTextTheme() {
     const font = 'Archivo';
     return const TextTheme(
       labelMedium: TextStyle(fontFamily: font, fontSize: 15, fontWeight: FontWeight.w800, height: 1.2, color: BoardGameColors.defaultText),

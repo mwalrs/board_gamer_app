@@ -18,6 +18,8 @@ class FoodProcessStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statusInfo = _resolveStatusInfo();
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     return Card(
       child: Padding(
@@ -32,7 +34,7 @@ class FoodProcessStatusCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     statusInfo.title,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: textTheme.titleMedium,
                   ),
                 ),
               ],
@@ -40,7 +42,7 @@ class FoodProcessStatusCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               statusInfo.description,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: textTheme.bodyMedium,
             ),
             const Divider(height: 24),
             _buildStepRow(
