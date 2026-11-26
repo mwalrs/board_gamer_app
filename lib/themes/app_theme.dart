@@ -1,4 +1,5 @@
 import 'package:board_gamer_app/themes/elevated_button_theme.dart';
+import 'package:board_gamer_app/themes/snackbar_theme.dart';
 import 'package:board_gamer_app/themes/text_theme.dart';
 import 'package:board_gamer_app/themes/colors.dart';
 import 'package:board_gamer_app/themes/input_decoration_theme.dart';
@@ -12,7 +13,8 @@ class AppTheme {
       scaffoldBackgroundColor: BoardGameColors.applicationColor,
       elevatedButtonTheme: BoardGameElevatedButtonTheme.elevatedButtonTheme(),
       textTheme: BoardGameTextTheme.customTestTheme(),
-      inputDecorationTheme: BoardGameInputDecorationTheme.inputDecorationThemeData()
+      inputDecorationTheme: BoardGameInputDecorationTheme.inputDecorationThemeData(),
+      snackBarTheme: BoardGameSnackbarTheme.snackBarThemeData()
     );
   }
 }

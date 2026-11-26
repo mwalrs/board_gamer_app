@@ -1,3 +1,5 @@
+import 'package:board_gamer_app/presentation/screens/event_overview.dart';
+import 'package:board_gamer_app/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -13,6 +15,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool successfulLogin = false;
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -21,7 +25,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   String? validateUsername(String? value) {
-    if (value == null || value.isEmpty)  {
+    if (value == null || value.isEmpty) {
       return "Username darf nicht leer sein!";
     }
     if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
@@ -40,8 +44,37 @@ class _LoginWidgetState extends State<LoginWidget> {
     return null;
   }
 
-  Future<void> _handleFirebaseLogin(String username, String password) async {
+  Future<void> _handleFirebaseAuthentication(
+    String username,
+    String password,
+  ) async {
     // TODO handle login
+
+    if (!mounted) {
+      return;
+    }
+
+    if (successfulLogin) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const EventOverviewScreen()),
+      );
+    } else {
+      _passwordController.clear();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Login fehlgeschlagen!',
+            style: TextStyle(
+              fontFamily: "Archivo",
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              height: 1.5,
+              color: BoardGameColors.buttonLabel,
+            ),
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -73,15 +106,12 @@ class _LoginWidgetState extends State<LoginWidget> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   final username = _usernameController.text;
                   final password = _passwordController.text;
 
-                  // TODO Firebase Login and error management
-
-                  _usernameController.clear();
-                  _passwordController.clear();
+                  _handleFirebaseAuthentication(username, password);
                 }
               },
               icon: const Icon(Icons.arrow_forward),

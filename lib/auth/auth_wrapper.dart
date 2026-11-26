@@ -22,7 +22,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
 
   Future<void> checkLoginStatus() async {
     // TODO firebase login
-    const authenticated = true;
+    const authenticated = false;
 
     // checks if state is still available
     if (!mounted) {
