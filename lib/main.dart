@@ -1,4 +1,4 @@
-import 'package:board_gamer_app/presentation/screens/start_screen.dart';
+import 'package:board_gamer_app/auth/auth_wrapper.dart';
 import 'package:board_gamer_app/themes/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Board Gamer App',
       theme: AppTheme.theme(),
-      home: const StartScreen(),
+      home: const AuthWrapper(),
     );
   }
 }
