@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:board_gamer_app/auth/auth_wrapper.dart';
 import 'package:board_gamer_app/themes/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +8,8 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  AwesomeNotifications().initialize('assets/img/icon.png', []);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

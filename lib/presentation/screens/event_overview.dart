@@ -1,7 +1,48 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:board_gamer_app/notification/notification_util.dart';
 import 'package:flutter/material.dart';
 
-class EventOverviewScreen extends StatelessWidget {
+import '../widgets/notification/notification_alert_dialog.dart';
+
+class EventOverviewScreen extends StatefulWidget {
   const EventOverviewScreen({super.key});
+
+  @override
+  State<EventOverviewScreen> createState() => _EventOverviewScreenState();
+}
+
+class _EventOverviewScreenState extends State<EventOverviewScreen> {
+  late final NotificationUtil _notificationUtil;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _notificationUtil = NotificationUtil(
+      awesomeNotifications: AwesomeNotifications(),
+    );
+
+    _checkNotificationPermission();
+  }
+
+  Future<void> _checkNotificationPermission() async {
+    final isAllowed = await AwesomeNotifications().isNotificationAllowed();
+
+    if (!mounted) return;
+
+    if (!isAllowed) {
+      await notificationAlertDialog(
+        context: context,
+        notificationUtil: _notificationUtil
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    AwesomeNotifications().dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

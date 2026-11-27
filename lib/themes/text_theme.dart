@@ -37,7 +37,9 @@ class BoardGameTextTheme {
     return const TextTheme(
       labelSmall: TextStyle(fontFamily: font, fontSize: 12, fontWeight: FontWeight.w400, color: BoardGameColors.defaultText),
       labelMedium: TextStyle(fontFamily: font, fontSize: 15, fontWeight: FontWeight.w800, height: 1.2, color: BoardGameColors.defaultText),
+      bodySmall: TextStyle(fontFamily: font, fontSize: 12, fontWeight: FontWeight.w400, height: 1.5, color: BoardGameColors.defaultText),
       bodyMedium: TextStyle(fontFamily: font, fontSize: 15, fontWeight: FontWeight.w400, height: 1.5, color: BoardGameColors.defaultText),
+      titleMedium: TextStyle(fontFamily: font, fontSize: 30, fontWeight: FontWeight.w900, height: 1.08, letterSpacing: -0.68, color: BoardGameColors.defaultText),
       titleLarge: TextStyle(fontFamily: font, fontSize: 34, fontWeight: FontWeight.w900, height: 1.08, letterSpacing: -0.68, color: BoardGameColors.defaultText),
     );
   }
